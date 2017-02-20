@@ -24,19 +24,15 @@ if ( ! defined( 'STRIPE_DATA_PATH' ) ) {
 
 include_once 'includes/file-funnel.php';
 
+require_once('vendor/autoload.php');
+
 function stripe_date_display($atts) {
-	$request = new WP_REST_Request( 'GET', 'https://api.stripe.com' );
-	$response = rest_do_request( $request );
+	// $customer = \Stripe\Customer::all();
 	 
-	if ( $response->is_error() ) {
-	    // Convert to a WP_Error object.
-	    echo '<p>No Data!:</p>';
-	}
-	 
-	$data = $response->get_data();
-	$headers = $response->get_headers();
 	echo '<p>Success! Here is the data:</p>';
-	var_dump( $data );
+	// var_dump( $request );
+	echo '<h1>Customer List</h1>';
+	// var_dump( $customer );
 }
 
 add_shortcode( 'stripedata', 'stripe_date_display' );
